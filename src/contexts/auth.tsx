@@ -41,11 +41,11 @@ export function AuthProvider(props: AuthProvider) {
     const response = await api.post<AuthResponse>('authenticate', {
       code: githubCode,
     })
-
+    
     const { token, user } = response.data
-
+    
     localStorage.setItem('@dowhile:token', token)
-
+    
     api.defaults.headers.common.authorization = `Bearer ${token}`;
 
     setUser(user)

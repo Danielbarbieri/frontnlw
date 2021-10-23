@@ -7,7 +7,7 @@ import styles from './styles.module.scss';
 export function SendMessageForm() {
     const { user, signOut } = useContext(AuthContext);
 
-    const[message, setMessage] = useState('');
+    const [message, setMessage] = useState('');
 
     async function handleSendMessage(event: FormEvent){
 
@@ -17,6 +17,8 @@ export function SendMessageForm() {
         }
 
         await api.post('messages', {message})
+
+        setMessage('');
     }
 
     return (
@@ -41,11 +43,11 @@ export function SendMessageForm() {
             <form  onSubmit={handleSendMessage} className={styles.sendMessageForm}>
                 <label htmlFor="message">Mensagem</label>
                 <textarea 
-                name="message"  
-                id="message"
-                value={message} 
-                onChange={event => setMessage(event.target.value)} 
-                placeholder="Qual a expectativapara finalizar essa aula 2?"/>
+                    name="message"  
+                    id="message"
+                    placeholder="Qual a expectativapara finalizar essa aula 2?"
+                    onChange={event => setMessage(event.target.value)} 
+                    value={message}/>
 
                 <button type="submit">Enviar mensagem</button>
                 
